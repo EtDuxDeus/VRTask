@@ -28,11 +28,10 @@ namespace Tools
 				{
 					SetNewObjectAsGazed(hit);
 				}
-				else
+				if (IsCanBeUsed(hit))
 				{
 					FillHitMarkerOnGazingSameObject();
 				}
-
 				if (hit.collider.tag == "TeleportPosition")
 				{
 					_hitMarkerImage.color = Color.green;
@@ -48,6 +47,12 @@ namespace Tools
 			{
 				ResetOnTargetLose();
 			}
+		}
+
+
+		private bool IsCanBeUsed(RaycastHit hit)
+		{
+			return hit.collider.tag == "TeleportPosition" | hit.collider.tag == "Enemies";
 		}
 
 
